@@ -1,0 +1,22 @@
+{
+    "name": "com.irfanraza.leveleditor",
+    "version": "1.0.0",
+    "displayName": "Level Editor",
+    "description": "Level Editor and generator.",
+    "unity": "2017.4",
+    "keywords": [
+      "Level",
+      "Level Editor"
+    ],
+    "dependencies": {
+        
+    },
+    "author": {
+      "name": "Irfanraza",
+      "email": "mirzairfanraza@gmail.com"
+    },
+     "repository": {
+      "type": "git",
+      "url": "https://github.com/MirzaIrfanraza/LevelEditor.git"
+    }
+  }
