@@ -4,6 +4,7 @@
 	using UnityEditor;
 	using UnityEngine;
 	using System;
+        [InitializeOnLoad]
 	public class LevelEditor : EditorWindow {
 
 		public LevelEditorConfiguration editorConfiguration;
