@@ -4,10 +4,11 @@
 	using UnityEngine;
 
 	[System.Serializable]
-	public class Grid  
+	public class Cell  
 	{
 		public int row;
 		public int coloumn;
 		public string toolId;
+		public int cellId;
 	}
 }

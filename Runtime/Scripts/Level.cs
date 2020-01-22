@@ -5,6 +5,6 @@
 
 	[System.Serializable]
 	public class Level {
-		public Grid grid;
+		public Cell grid;
 	}
 }
