@@ -2,9 +2,9 @@
 	using System.Collections.Generic;
 	using System.Collections;
 	using UnityEngine;
-
+    [CreateAssetMenu(menuName ="LevelEditor/LevelData")]
 	public class LevelData : ScriptableObject 
 	{
-		public Level[] levels;
+		public List<Level> levels;
 	}
 }
