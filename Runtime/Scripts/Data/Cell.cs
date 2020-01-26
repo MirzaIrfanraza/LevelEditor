@@ -6,9 +6,10 @@
 	[System.Serializable]
 	public class Cell  
 	{
-		public int row;
-		public int coloumn;
-		public string toolId;
-		public int cellId;
+		public int toolId;
+		public Cell(int toolId)
+		{
+			this.toolId=toolId;
+		}
 	}
 }

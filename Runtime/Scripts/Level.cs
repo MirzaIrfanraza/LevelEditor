@@ -5,6 +5,10 @@
 
 	[System.Serializable]
 	public class Level {
-		public Cell cell;
+		public List<CellView> cellViews;
+		public Level(List<CellView> cellViews)
+		{
+			this.cellViews=cellViews;
+		}	
 	}
 }
