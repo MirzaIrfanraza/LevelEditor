@@ -1,10 +1,15 @@
-﻿namespace LevelEditor {
-	using System.Collections.Generic;
-	using System.Collections;
-	using UnityEngine;
-    [CreateAssetMenu(menuName ="LevelEditor/LevelData")]
-	public class LevelData : ScriptableObject 
-	{
-		public List<Level> levels;
-	}
+﻿namespace LevelEditor
+{
+    using System.Collections.Generic;
+    using System.Collections;
+    using UnityEngine;
+    using UnityEditor;
+
+    [CreateAssetMenu(menuName = "LevelEditor/LevelData")]
+    
+    public class LevelData : ScriptableObject
+    {
+        public List<Level> Levels;
+
+    }
 }
