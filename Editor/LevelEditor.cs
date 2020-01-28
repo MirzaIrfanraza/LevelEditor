@@ -187,8 +187,16 @@
         {
             for (int index = 0; index < configuration.levelData.Levels.Count; index++)
             {
+                EditorGUILayout.BeginHorizontal(skin.GetStyle("toolbox"));
                 EditorUIUtility.DrawButton("Level : " + index, () => OnLevelButtonClicked(index), GUILayout.Height(30), GUILayout.ExpandWidth(true));
+                EditorUIUtility.DrawButton("X", () => OnLevelDeleteButtonClicked(index), GUILayout.Height(30), GUILayout.ExpandWidth(true));
+                EditorGUILayout.EndHorizontal();
             }
+        }
+        public void OnLevelDeleteButtonClicked(int index)
+        {
+            configuration.levelData.Levels.RemoveAt(index);
+            Repaint();
         }
 
         public void OnLevelButtonClicked(int index)
