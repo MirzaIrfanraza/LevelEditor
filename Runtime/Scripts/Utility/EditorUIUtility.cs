@@ -13,8 +13,8 @@
         public static UnityEngine.Object DrawObjectFieldWithLabel (string lable, UnityEngine.Object obj, Type type, params GUILayoutOption[] gUILayouts) {
             return EditorGUILayout.ObjectField (lable, obj, type, true, gUILayouts);
         }
-        public static void DrawObjectField (UnityEngine.Object obj, Type type, params GUILayoutOption[] gUILayouts) {
-            obj = EditorGUILayout.ObjectField (obj, type, true, gUILayouts);
+        public static UnityEngine.Object DrawObjectField (UnityEngine.Object obj, Type type, params GUILayoutOption[] gUILayouts) {
+            return EditorGUILayout.ObjectField (obj, type, true, gUILayouts);
         }
 
         public static void DrawButton (string name, System.Action action, GUIStyle style, params GUILayoutOption[] gUILayoutOption) {

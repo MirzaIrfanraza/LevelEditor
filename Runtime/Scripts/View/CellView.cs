@@ -10,7 +10,12 @@
     {
         public Cell cell;
         public Texture texture;
-        public CellView(Cell cell, Texture texture)
+        public CellView(Cell cell)
+        {
+            this.cell = cell;
+            this.texture = new LevelEditorTool().gridSprite;
+        }
+        public CellView(Cell cell,Texture texture)
         {
             this.cell = cell;
             this.texture = texture;

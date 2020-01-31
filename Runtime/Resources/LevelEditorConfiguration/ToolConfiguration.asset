@@ -21,4 +21,10 @@ MonoBehaviour:
     handleSprite: {fileID: 2800000, guid: bca251e537f484ba0a3c2a4b53d178b6, type: 3}
   - toolTipMessage: 
     gridSprite: {fileID: 2800000, guid: 18033b38501c94852998ed8c184e1fc7, type: 3}
-    handleSprite: {fileID: 2800000, guid: 59cf0e03663fb4070953fe5b79c8ffb5, type: 3}
+    handleSprite: {fileID: 2800000, guid: bca251e537f484ba0a3c2a4b53d178b6, type: 3}
+  - toolTipMessage: 
+    gridSprite: {fileID: 2800000, guid: 2a80cf431aaf14a48b4d36d312a6f39e, type: 3}
+    handleSprite: {fileID: 2800000, guid: bca251e537f484ba0a3c2a4b53d178b6, type: 3}
+  - toolTipMessage: 
+    gridSprite: {fileID: 2800000, guid: 81b17c748649d40b785344c43b74b8d0, type: 3}
+    handleSprite: {fileID: 2800000, guid: bca251e537f484ba0a3c2a4b53d178b6, type: 3}

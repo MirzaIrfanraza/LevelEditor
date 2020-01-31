@@ -12,7 +12,6 @@
 			this.cellViews=cellViews;
 			this.gridSize = gridSize;
 		}
-
         public object Clone()
         {
 			return this;
