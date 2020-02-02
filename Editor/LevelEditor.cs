@@ -14,12 +14,11 @@
         Vector2 levelBoxScrollPosition;
         Vector2 gridContainerScrollPosition;
 
-        LevelEditorConfiguration configuration;
+        public LevelEditorConfiguration configuration;
         LevelEditorTool currentSelectedTool;
         int currentSelectedToolIndex = -1;
-        Level level;
+        // Level level;
         int currentSelectedLevel = -1;
-
         #endregion
 
         #region Editor_Callbacks
@@ -33,10 +32,10 @@
         }
         void InitializeGrid()
         {
-            level = new Level(new Vector2Int(25, 25), new List<CellView>());
-            for (int i = 0; i < level.gridSize.x * level.gridSize.y; i++)
+            configuration.levelData.currentLevel = new Level(new Vector2Int(5, 5), new List<CellView>(),"Untitled");
+            for (int i = 0; i < configuration.levelData.currentLevel.gridSize.x * configuration.levelData.currentLevel.gridSize.y; i++)
             {
-                level.cellViews.Add(new CellView(new Cell(-1)));
+                configuration.levelData.currentLevel.cellViews.Add(new CellView(new Cell(-1)));
             }
         }
 
@@ -57,6 +56,7 @@
         {
             DrawEditor();
             HandleEvents();
+            Repaint();
         }
         #endregion
 
@@ -85,9 +85,15 @@
             configuration = (LevelEditorConfiguration)EditorUIUtility.DrawObjectField(configuration, typeof(LevelEditorConfiguration),GUILayout.ExpandHeight(true));
             EditorUIUtility.DrawButton("New ", () => OnCreateNewLevelButtonClick(),GUILayout.ExpandHeight(true));
             EditorUIUtility.DrawButton("Save", () => OnSaveButtonClick(), GUILayout.ExpandHeight(true));
-            EditorUIUtility.DrawButton("Save As", () => Debug.Log("Hello"), GUILayout.ExpandHeight(true));
+            EditorUIUtility.DrawButton("Save As", () => OnNewLevelButtonClick(), GUILayout.ExpandHeight(true));
 
             EditorGUILayout.EndHorizontal();
+        }
+        public void OnNewLevelButtonClick()
+        {
+            LevelCreatorEditor.Initialize();
+            LevelCreatorEditor creatorEditor=(LevelCreatorEditor)EditorWindow.GetWindow(typeof(LevelCreatorEditor));
+            creatorEditor.InitializeLevelEditorConfiguration(configuration);
         }
         #endregion
 
@@ -116,18 +122,18 @@
         public void OnSaveButtonClick()
         {
             Level tempLevel;
-
-            Vector2Int tempGridSize = level.gridSize;
+            Vector2Int tempGridSize = configuration.levelData.currentLevel.gridSize;
             List<CellView> tempCellView = new List<CellView>();
-            foreach (CellView cellView in level.cellViews)
+
+            foreach (CellView cellView in configuration.levelData.currentLevel.cellViews)
             {
                 tempCellView.Add(new CellView(cellView.cell,cellView.texture));
             }
-            tempLevel = new Level(tempGridSize, tempCellView);
+            tempLevel = new Level(tempGridSize, tempCellView,configuration.levelData.currentLevel.name);
             configuration.levelData.Levels.Add(tempLevel);
 
-            Debug.Log(tempCellView.Equals(level.cellViews));
-            Debug.Log(tempLevel.Equals(level));
+            Debug.Log(tempCellView.Equals(configuration.levelData.currentLevel.cellViews));
+            Debug.Log(tempLevel.Equals(configuration.levelData.currentLevel));
             //Repaint();
             //InitializeGrid();
         }
@@ -194,10 +200,11 @@
         }
         public void DrawLevelButtons()
         {
+            // Debug.Log(configuration.levelData.Levels.Count);
             for (int index = 0; index < configuration.levelData.Levels.Count; index++)
             {
                 EditorGUILayout.BeginHorizontal(skin.GetStyle("toolbox"));
-                EditorUIUtility.DrawButton("Level : " + index, () => OnLevelButtonClicked(index), GUILayout.Height(45), GUILayout.ExpandWidth(true));
+                EditorUIUtility.DrawButton(configuration.levelData.Levels[index].name, () => OnLevelButtonClicked(index), GUILayout.Height(45), GUILayout.ExpandWidth(true));
                 EditorUIUtility.DrawButton("X", () => OnLevelDeleteButtonClicked(index), GUILayout.Height(45), GUILayout.ExpandWidth(true));
                 EditorUIUtility.DrawButton(skin.GetStyle("editbutton").normal.background, () => OnLevelEditButtonClicked(index), GUILayout.Height(45), GUILayout.Width(45));
                 EditorGUILayout.EndHorizontal();
@@ -222,8 +229,8 @@
             {
                 tempCellView.Add(new CellView(cellView.cell,cellView.texture));
             }
-            tempLevel = new Level(tempGridSize, tempCellView);
-            level = tempLevel;
+            tempLevel = new Level(tempGridSize, tempCellView,configuration.levelData.Levels[index].name);
+            configuration.levelData.currentLevel = tempLevel;
             Repaint();
         }
         #endregion
@@ -234,18 +241,16 @@
 
         public void DrawGrid()
         {
-            
             gridContainerScrollPosition = EditorGUILayout.BeginScrollView(gridContainerScrollPosition, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
-
             int cellIndex = 0;
-            if (level.cellViews.Count > 0)
+            if (configuration.levelData.currentLevel.cellViews.Count > 0)
             {
-                for (int row = 0; row < level.gridSize.x; row++)
+                for (int row = 0; row < configuration.levelData.currentLevel.gridSize.x; row++)
                 {
                     EditorGUILayout.BeginHorizontal();
-                    for (int colomn = 0; colomn < level.gridSize.y; colomn++)
+                    for (int colomn = 0; colomn < configuration.levelData.currentLevel.gridSize.y; colomn++)
                     {
-                        level.cellViews[cellIndex].DrawCell(currentSelectedTool, currentSelectedToolIndex, this);
+                        configuration.levelData.currentLevel.cellViews[cellIndex].DrawCell(currentSelectedTool, currentSelectedToolIndex, this);
                         cellIndex++;
                     }
                     EditorGUILayout.EndHorizontal();

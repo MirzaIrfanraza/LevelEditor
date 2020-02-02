@@ -13,7 +13,7 @@
         public CellView(Cell cell)
         {
             this.cell = cell;
-            this.texture = new LevelEditorTool().gridSprite;
+            this.texture = null;
         }
         public CellView(Cell cell,Texture texture)
         {

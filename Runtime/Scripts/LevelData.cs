@@ -10,6 +10,6 @@
     public class LevelData : ScriptableObject
     {
         public List<Level> Levels;
-
+        public Level currentLevel;
     }
 }
