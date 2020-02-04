@@ -7,8 +7,13 @@
     
     [InitializeOnLoad]
     public static class EditorUIUtility {
-        public static void DrawLabel (string labelString, GUIStyle style, params GUILayoutOption[] gUILayoutOption) {
-            EditorGUILayout.LabelField (labelString, gUILayoutOption);
+        public static void DrawLabel(string labelString, GUIStyle style, params GUILayoutOption[] gUILayoutOption)
+        {
+            EditorGUILayout.LabelField(labelString, style, gUILayoutOption);
+        }
+        public static void DrawLabel(string labelString, params GUILayoutOption[] gUILayoutOption)
+        {
+            EditorGUILayout.LabelField(labelString, gUILayoutOption);
         }
         public static UnityEngine.Object DrawObjectFieldWithLabel (string lable, UnityEngine.Object obj, Type type, params GUILayoutOption[] gUILayouts) {
             return EditorGUILayout.ObjectField (lable, obj, type, true, gUILayouts);

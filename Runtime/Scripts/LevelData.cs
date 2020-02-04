@@ -11,5 +11,6 @@
     {
         public List<Level> Levels;
         public Level currentLevel;
+        public int currentLevelIndex=-1;
     }
 }

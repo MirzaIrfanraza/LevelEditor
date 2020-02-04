@@ -8,6 +8,5 @@
 	{
 		public string toolTipMessage;
 		public Texture gridSprite;
-		public Texture2D handleSprite;
 	}
 }

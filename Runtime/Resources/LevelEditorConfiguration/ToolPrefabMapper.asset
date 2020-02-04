@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283778032994048d09e84a6d325db907, type: 3}
+  m_Name: ToolPrefabMapper
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 7530522517008058765, guid: f6c477534714a4b72be960a648d218dc, type: 3}
+  - {fileID: 5150055440696044136, guid: 80e0d18ee8d304b988df59f4db286df4, type: 3}
+  - {fileID: 8831647355338019100, guid: 2cf040b4361f7470390ff3490100bbe1, type: 3}

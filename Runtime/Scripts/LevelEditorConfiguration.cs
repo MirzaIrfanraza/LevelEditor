@@ -7,5 +7,6 @@
 	{
 		public ToolConfiguration toolConfiguration;
 		public LevelData levelData;
+		public ToolPrefabMapper toolPrefabMapper;
 	}
 }

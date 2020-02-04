@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Collections;
-    using LevelEditor;
     using UnityEditor;
     using UnityEngine;
     [System.Serializable]

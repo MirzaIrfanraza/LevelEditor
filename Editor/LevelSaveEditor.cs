@@ -4,12 +4,11 @@
 	using UnityEngine;
 	using UnityEditor;
 
-	public class LevelCreatorEditor : EditorWindow {
+	public class LevelSaveEditor : EditorWindow {
 		#region PRIVATE_VARS
         GUISkin skin;
 		LevelEditorConfiguration configuration;
 		string name;
-		Vector2Int gridSize;
 		#endregion
 
 		#region PUBLIC_VARS
@@ -18,8 +17,8 @@
 		#region LEVEL_CREATOR_EDITOR
 		public static void Initialize() 
 		{
-			LevelCreatorEditor window=(LevelCreatorEditor)EditorWindow.GetWindow(typeof(LevelCreatorEditor));
-			window.title="LevelCreatorEditor";
+			LevelSaveEditor window =(LevelSaveEditor)EditorWindow.GetWindow(typeof(LevelSaveEditor));
+			window.title="LevelSaveEditor";
 			window.minSize=new Vector2(400,100);
 			window.maxSize=new Vector2(400,100);
 			window.Show();
@@ -44,9 +43,8 @@
 		}
 		public void OnGUI()
         {
-			gridSize=EditorUIUtility.DrawVector2FieldWithName("Grid Size : ",gridSize);
 			name=EditorUIUtility.DrawTextFieldWithName("Level Name : ",name);
-			EditorUIUtility.DrawButton("Create",()=>InitializeGrid());
+			EditorUIUtility.DrawButton("Save",()=>OnSaveButtonClick());
 		}
 		#endregion
 		#region PUBLIC_METHODS
@@ -54,16 +52,19 @@
 		#endregion
 
 		#region PRIVATE_METHODS
-		void InitializeGrid()
+		void OnSaveButtonClick()
         {
-			configuration.levelData.currentLevel = new Level(gridSize, new List<CellView>(),name);
-            for (int i = 0; i < configuration.levelData.currentLevel.gridSize.x * configuration.levelData.currentLevel.gridSize.y; i++)
-            {
-                configuration.levelData.currentLevel.cellViews.Add(new CellView(new Cell(-1)));
-            }
-			configuration.levelData.Levels.Add(configuration.levelData.currentLevel);
-			configuration.levelData.currentLevelIndex = configuration.levelData.Levels.Count-1;
-			this.Close();
+			Level tempLevel;
+			configuration.levelData.currentLevel.name = name;
+			Vector2Int tempGridSize = configuration.levelData.currentLevel.gridSize;
+			List<CellView> tempCellView = new List<CellView>();
+			foreach (CellView cellView in configuration.levelData.currentLevel.cellViews)
+			{
+				tempCellView.Add(new CellView(cellView.cell, cellView.texture));
+			}
+			tempLevel = new Level(tempGridSize, tempCellView, configuration.levelData.currentLevel.name);
+            configuration.levelData.Levels.Add(tempLevel);
+            this.Close();
         }
 		#endregion
 	}
