@@ -271,8 +271,6 @@
             {
                 if(tempLevel.cellViews[indexOfCell].cell.toolId!=-1)
                 {
-                    Debug.Log(tempLevel.cellViews[indexOfCell].cell.toolId+" : "+ configuration.toolPrefabMapper.prefabs.Count);
-                    
                     Vector2 pos = tempLevel.cellViews[indexOfCell].GetPosition(indexOfCell, tempLevel.gridSize);
                     Instantiate(configuration.toolPrefabMapper.prefabs[tempLevel.cellViews[indexOfCell].cell.toolId], new Vector3(pos.x, 0, pos.y),Quaternion.identity,parentGameObject.transform);
                 }

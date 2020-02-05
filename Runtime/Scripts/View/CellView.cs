@@ -21,24 +21,29 @@
         }
         public void DrawCell(LevelEditorTool editorTool, int toolIndex, EditorWindow window)
         {
-            EditorUIUtility.DrawButton(texture, () => OnMouseEventDrawSelectedToolTexture(editorTool, toolIndex), GUILayout.Width(25), GUILayout.Height(25));
+            EditorUIUtility.DrawButton(texture, () => OnMouseEventDrawSelectedToolTexture(editorTool.gridSprite, toolIndex), GUILayout.Width(25), GUILayout.Height(25));
             HandleHoverDraw(editorTool, toolIndex, window);
         }
-        public void OnMouseEventDrawSelectedToolTexture(LevelEditorTool editorTool, int toolIndex)
+        public void OnMouseEventDrawSelectedToolTexture(Texture texture, int toolIndex)
         {
            
-            if (editorTool == null)
-                return;
+            //if (editorTool == null)
+            //    return;
             cell.toolId = toolIndex;
-            texture = editorTool.gridSprite;
+            this.texture = texture;
         }
         public void HandleHoverDraw(LevelEditorTool editorTool, int toolIndex, EditorWindow window)
         {
             var rect = GUILayoutUtility.GetLastRect();
             var pos = Event.current.mousePosition;
-            if (Event.current.modifiers == EventModifiers.Shift && rect.Contains(pos))
+            if(Event.current.modifiers == EventModifiers.Control && rect.Contains(pos))
             {
-                OnMouseEventDrawSelectedToolTexture(editorTool, toolIndex);
+                OnMouseEventDrawSelectedToolTexture(null, -1);
+                window.Repaint();
+            }
+            else if (Event.current.modifiers == EventModifiers.Shift && rect.Contains(pos))
+            {
+                OnMouseEventDrawSelectedToolTexture(editorTool.gridSprite, toolIndex);
                 window.Repaint();
             }
         }
